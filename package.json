@@ -1,0 +1,23 @@
+{
+	"name": "delta.js",
+	"version": "1.0.0",
+	"main": "./dist/main.js",
+	"repository": "https://github.com/wils446/delta.js.git",
+	"author": "wils446 <wilsonlimmmm@gmail.com>",
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc-watch --onSuccess \"node .\""
+	},
+	"license": "MIT",
+	"dependencies": {
+		"discord.js": "^13.6.0",
+		"dotenv": "^14.3.2",
+		"typescript": "^4.5.5"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.10.1",
+		"@typescript-eslint/parser": "^5.10.1",
+		"eslint": "^8.8.0",
+		"tsc-watch": "^4.6.0"
+	}
+}
