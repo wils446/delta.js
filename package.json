@@ -6,7 +6,8 @@
 	"author": "wils446 <wilsonlimmmm@gmail.com>",
 	"scripts": {
 		"build": "tsc",
-		"dev": "tsc-watch --onSuccess \"node .\""
+		"dev": "tsc-watch --onSuccess \"node .\"",
+		"create-command": "node ./scripts/create-command.js"
 	},
 	"license": "MIT",
 	"dependencies": {
