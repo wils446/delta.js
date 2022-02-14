@@ -1,6 +1,7 @@
 import Discord, { Intents, Command } from "discord.js";
 import fs from "fs";
 import dotenv from "dotenv";
+import { IToDConfig } from "./interfaces/IToDConfig";
 
 dotenv.config({ path: ".env" });
 
@@ -16,6 +17,8 @@ const client = new Discord.Client({
 		Intents.FLAGS.DIRECT_MESSAGES,
 	],
 });
+
+const todConfig: Map<string, IToDConfig> = new Map();
 
 const commands: Command[] = [];
 const commandsFolder = fs.readdirSync("./dist/commands");
@@ -33,7 +36,7 @@ client.on("ready", () => {
 client.on("messageCreate", async (msg) => {
 	if (!msg.content.startsWith(PREFIX) || msg.author.bot) return;
 
-	const args = msg.content.slice(PREFIX.length).split(/ +/);
+	const args = msg.content.slice(PREFIX.length).split(/\r?\n/)[0].split(/ +/);
 	const commandName = args.shift()!.toLowerCase();
 
 	const command = commands.find((cmd) => cmd.name === commandName || cmd.aliases?.includes(commandName));
@@ -41,7 +44,7 @@ client.on("messageCreate", async (msg) => {
 	if (!command) return;
 
 	try {
-		await command.execute(msg, args);
+		await command.execute(msg, args, todConfig);
 	} catch (err) {
 		await msg.reply(`Failed to execute command: ${(err as Error).message}`);
 	}
