@@ -37,5 +37,5 @@ export const getLang = (lang: string) => {
 		},
 	];
 
-	return languages.find((l) => l.aliases.includes(lang) || []);
+	return languages.find((l) => l.aliases.includes(lang));
 };
